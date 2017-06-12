@@ -17,7 +17,6 @@ create_boot_directory
 #
 append config {
 <config>
-	<default caps="128"/>
 	<parent-provides>
 		<service name="CPU"/>
 		<service name="IO_MEM"/>
