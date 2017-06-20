@@ -105,7 +105,7 @@ class Genode::Platform : public Genode::Platform_generic
 
 		static addr_t core_phys_addr(addr_t virt);
 
-		static Hw::Page_table            & core_page_table();
+		static addr_t                      core_page_table();
 		static Hw::Page_table::Allocator & core_page_table_allocator();
 
 

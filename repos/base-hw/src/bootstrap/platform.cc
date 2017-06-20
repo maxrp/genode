@@ -62,9 +62,9 @@ Platform::Pd::Pd(Platform::Ram_allocator & alloc)
   array(*Genode::construct_at<Table_array>(array_base))
 {
 	using namespace Genode;
-	map_insert(Mapping((addr_t)table_base, (addr_t)table_base,
+	map_insert(Mapping((addr_t)table_base, (addr_t)0xe0000000,
 	                   sizeof(Table),       Hw::PAGE_FLAGS_KERN_DATA));
-	map_insert(Mapping((addr_t)array_base, (addr_t)array_base,
+	map_insert(Mapping((addr_t)array_base, (addr_t)0xe0000000 + sizeof(Table),
 	                   sizeof(Table_array), Hw::PAGE_FLAGS_KERN_DATA));
 }
 
@@ -84,6 +84,7 @@ void Platform::Pd::map(Mapping m)
 
 void Platform::Pd::map_insert(Mapping m)
 {
+	Genode::log("map: ", m);
 	mappings.add(m);
 	map(m);
 }
